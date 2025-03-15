@@ -1,21 +1,15 @@
 import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-
-import dataProvider, {
-  GraphQLClient,
-  liveProvider,
-} from "@refinedev/nestjs-query";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
 import { App as AntdApp } from "antd";
-import { createClient } from "graphql-ws";
 import { BrowserRouter, Route, Routes } from "react-router";
+import { dataProvider, liveProvider } from "./providers";
 
 function App() {
   return (
@@ -25,8 +19,8 @@ function App() {
         <AntdApp>
           <DevtoolsProvider>
             <Refine
-              // dataProvider={dataProvider(gqlClient)}
-              // liveProvider={liveProvider(wsClient)}
+              dataProvider={dataProvider}
+              liveProvider={liveProvider}
               notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               options={{
